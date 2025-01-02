@@ -1,5 +1,5 @@
 import unittest
-import geminiLibrary as mod
+import myLibrary as mod
 
 
 class TestBasic (unittest.TestCase):
@@ -144,6 +144,58 @@ class TestAbstraction (unittest.TestCase):
         self.disk = mod.Disk (1, "Shetah Afor", "Ishay Ribo", 2018)
         self.library.add (self.customer)
         self.library.add (self.book)
+
+    def testCustomer (self):
+        """
+        Check if errors are raised when creating customer with wrong parameters
+        """
+        with self.assertRaises (Exception):
+            newCustomer = mod.Customer ("Arieh", "Ankri", 547878747) #id is a string
+        with self.assertRaises (Exception):
+            newCustomer = mod.Customer (123456789, 45, 547878747) #name is a number
+        with self.assertRaises (Exception):
+            newCustomer = mod.Customer (123456789, "Ankri", "aaa@gmail.com") #phone is a string
+
+    def testBook (self):
+        """
+        Check if errors are raised when creating book with wrong parameters
+        """
+        with self.assertRaises (Exception):
+            newBook = mod.Book ("Harry Potter", "And the chamber of secrets", "J.K. Rowling", 1997, "fiction") #id is a string
+        with self.assertRaises (Exception):
+            newBook = mod.Book (2, 2, "J.K. Rowling", 1997, "fiction") #name is a number
+        with self.assertRaises (Exception):
+            newBook = mod.Book (2, "Harry Potter And the chamber of secrets", 45, 1997, "fiction") #author is a number
+        with self.assertRaises (Exception):
+            newBook = mod.Book (2, "Harry Potter And the chamber of secrets", "J.K. Rowling", "13PM", "fiction") #year is a string
+        with self.assertRaises (Exception):
+            newBook = mod.Book (2, "Harry Potter And the chamber of secrets", "J.K. Rowling", 1997, 35) #department is a number
+
+    def testDisk (self):
+        """
+        Check if errors are raised when creating disk with wrong parameters
+        """
+        with self.assertRaises (Exception):
+            newDisk = mod.Disk ("D32", "Shetah Afor", "Ishay Ribo", 2018) #id is a string
+        with self.assertRaises (Exception):
+            newDisk = mod.Disk (32, 456, "Ishay Ribo", 2018) #name is a number
+        with self.assertRaises (Exception):
+            newDisk = mod.Disk (32, "Shetah Afor", 1990, 2018) #author is a number
+        with self.assertRaises (Exception):
+            newDisk = mod.Disk (32, "Shetah Afor", "Ishay Ribo", "last year") #year is a string
+
+    def testMagazine (self):
+        """
+        Check if errors are raised when creating magazine with wrong parameters
+        """
+        with self.assertRaises (Exception):
+            newMagazine = mod.Magazine ("M72", "Maariv Lanoar", "Maariv", 52) #id is a string
+        with self.assertRaises (Exception):
+            newMagazine = mod.Magazine (72, 48, "Maariv", 52) #name is a number
+        with self.assertRaises (Exception):
+            newMagazine = mod.Magazine (72, "Maariv Lanoar", 1, 52) #publisher is a number
+        with self.assertRaises (Exception):
+            newMagazine = mod.Magazine (72, "Maariv Lanoar", "Maariv", "The best") #serialNumber is a string
 
     def testAddRemoveCustomer (self):
         """

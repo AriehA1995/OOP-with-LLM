@@ -1,5 +1,5 @@
 import unittest
-import myLibrary as mod
+import deepseekLibrary as mod
 
 
 class TestBasic (unittest.TestCase):
